@@ -49,8 +49,11 @@ func failedGuess(msg *types.SignedMessage) int64 {
 	}
 	return guess
 }
-
+/*
+预估gas
+ */
 func GuessGasUsed(ctx context.Context, tsk types.TipSetKey, msg *types.SignedMessage, al ActorLookup) (int64, error) {
+	//转账信息
 	if msg.Message.Method == builtin.MethodSend {
 		switch msg.Message.From.Protocol() {
 		case address.BLS:
@@ -62,13 +65,18 @@ func GuessGasUsed(ctx context.Context, tsk types.TipSetKey, msg *types.SignedMes
 			return 1298450, nil
 		}
 	}
-
+/*
+其他方法
+ */
 	to, err := al(ctx, msg.Message.To, tsk)
 	if err != nil {
 		return failedGuess(msg), xerrors.Errorf("could not lookup actor: %w", err)
 	}
 
 	guess, ok := Costs[CostKey{to.Code, msg.Message.Method}]
+	/*
+	如果没有预定义，则抛出错误
+	 */
 	if !ok {
 		return failedGuess(msg), xerrors.Errorf("unknown code-method combo")
 	}

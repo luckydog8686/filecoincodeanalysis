@@ -22,7 +22,9 @@ type TipSet struct {
 	blks   []*BlockHeader
 	height abi.ChainEpoch
 }
-
+/*
+expire?
+ */
 type ExpTipSet struct {
 	Cids   []cid.Cid
 	Blocks []*BlockHeader
@@ -103,6 +105,7 @@ func tipsetSortFunc(blks []*BlockHeader) func(i, j int) bool {
 //   an upper limit.)
 // * All blocks have the same height.
 // * All blocks have the same parents (same number of them and matching CIDs).
+//选择高度相同和父tipset相同的块，组成新的tipset
 func NewTipSet(blks []*BlockHeader) (*TipSet, error) {
 	if len(blks) == 0 {
 		return nil, xerrors.Errorf("NewTipSet called with zero length array of blocks")
