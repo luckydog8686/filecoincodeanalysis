@@ -1,0 +1,32 @@
+{
+  "buckets": [
+    {
+      "name": "Oceania",
+      "amount": 1,
+      "minerAddresses": [
+        "t021870"
+      ]
+    },
+    {
+      "name": "North America",
+      "amount": 1,
+      "minerAddresses": [
+        "t021870"
+      ]
+    },
+    {
+      "name": "Europe",
+      "amount": 1,
+      "minerAddresses": [
+        "t021870"
+      ]
+    },
+    {
+      "name": "Asia",
+      "amount": 1,
+      "minerAddresses": [
+        "t021870"
+      ]
+    }
+  ]
+}
